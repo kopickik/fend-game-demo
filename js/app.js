@@ -1,7 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
-
+let cardElement = document.getElementsByClassName("card");
+let cards = [...cardElement];
+console.log(`cards ${cards.type}`);
 
 /*
  * Display the cards on the page
