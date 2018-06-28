@@ -11,11 +11,6 @@ console.log(`cards ${cards.type}`);
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
-function cardOpen() {
-  console.log('cardOpen');
-};
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -42,6 +37,11 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
- for(card of cards){
-    card.addEventListener("click", cardOpen);
+for(card of cards){
+	card.addEventListener("click", cardOpen);
 }
+
+function cardOpen() {
+	this.classList.toggle("open");
+	this.classList.toggle("show");
+};
