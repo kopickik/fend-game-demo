@@ -12,6 +12,10 @@ console.log(`cards ${cards.type}`);
  *   - add each card's HTML to the page
  */
 
+function cardOpen() {
+  console.log('cardOpen');
+};
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -39,7 +43,5 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
  for(card of cards){
-	card.addEventListener("click", displayCard);
     card.addEventListener("click", cardOpen);
-    card.addEventListener("click",congratulations);
 }
