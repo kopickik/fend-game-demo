@@ -3,7 +3,7 @@
  */
 let cardElement = document.getElementsByClassName("card");
 let cards = [...cardElement];
-console.log(`cards ${cards.type}`);
+console.log(`cards ${cards}`);
 
 /*
  * Display the cards on the page
@@ -11,8 +11,17 @@ console.log(`cards ${cards.type}`);
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+ // onload function which is called everytime a page loads up
+ document.body.onload = startGame();
+
+// function to start the Game
+ function startGame() {
+ 	console.log('startGame');
+ 	cards = shuffle(cards);
+ }
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
+	console.log('shuffle')
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -41,7 +50,9 @@ for(card of cards){
 	card.addEventListener("click", cardOpen);
 }
 
+// function cardOpen which toggles the open and show class of the card
 function cardOpen() {
+	console.log('classList: '+this.type);
 	this.classList.toggle("open");
 	this.classList.toggle("show");
 };
