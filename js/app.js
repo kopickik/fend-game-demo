@@ -12,10 +12,10 @@ console.log(`cards ${cards}`);
  *   - add each card's HTML to the page
  */
  // onload function which is called everytime a page loads up
- document.body.onload = startGame();
+ document.body.onload = loadGame();
 
-// function to start the Game
- function startGame() {
+// function to load the Game onloading of the page
+ function loadGame() {
  	console.log('startGame');
  	cards = shuffle(cards);
  }
