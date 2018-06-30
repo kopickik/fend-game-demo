@@ -5,6 +5,9 @@ let cardElement = document.getElementsByClassName("card");
 let cards = [...cardElement];
 console.log(`cards ${cards}`);
 
+// deck of all cards in game
+const deck = document.getElementsByClassName("deck");
+console.log(`deck ${deck}`);
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
