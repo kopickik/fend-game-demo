@@ -3,11 +3,13 @@
  */
 let cardElement = document.getElementsByClassName("card");
 let cards = [...cardElement];
-console.log(`cards ${cards}`);
+// console.log(`cards ${cards}`);
 
 // deck of all cards in game
-const deck = document.getElementsByClassName("deck");
+const deck = document.getElementById("card-deck");
+const deckClass = document.getElementsByClassName("deck");
 console.log(`deck ${deck}`);
+console.log(`deckClass ${deckClass}`);
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -21,6 +23,24 @@ console.log(`deck ${deck}`);
  function loadGame() {
  	console.log('startGame');
  	cards = shuffle(cards);
+ 	console.log(`deckClassLength ${deckClass.length}`);
+ 	const deckChildNode = deckClass[0].childNodes;
+ 	console.log(`deckChildNode ${deckChildNode}`);
+ 	for (var i = 0; i < deckChildNode.length; i++){
+ 		// console.log(`deckClass ${deckClass[0].childNodes[i]}`);
+ 		[].forEach.call(cards, function(item) {
+            // deckChildNode.appendChild(item);
+            // console.log(`item ${item}`);
+        });
+ 	}
+ 	// for (var i = 0; i < cards.length; i++){
+  //       deck.innerHTML = "";
+  //       [].forEach.call(cards, function(item) {
+  //           deck.appendChild(item);
+  //           // console.log(`item ${item}`);
+  //       });
+  //       // cards[i].classList.remove("show", "open", "match", "disabled");
+  //   }
  }
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
