@@ -3,13 +3,16 @@
  */
 let cardElement = document.getElementsByClassName("card");
 let cards = [...cardElement];
-// console.log(`cards ${cards}`);
+console.log(`cards ${cards}`);
 
 // deck of all cards in game
 const deck = document.getElementById("card-deck");
 const deckClass = document.getElementsByClassName("deck");
 console.log(`deck ${deck}`);
 console.log(`deckClass ${deckClass}`);
+
+// variables for number of moves
+let numberOfMoves = 0;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -22,17 +25,24 @@ console.log(`deckClass ${deckClass}`);
 // function to load the Game onloading of the page
  function loadGame() {
  	console.log('startGame');
+ 	console.log(cards);
  	cards = shuffle(cards);
+	console.log(cards);
+
+ 	// Reset the number of moves
+ 	numberOfMoves = 0;
+
  	console.log(`deckClassLength ${deckClass.length}`);
- 	const deckChildNode = deckClass[0].childNodes;
+ 	const deckChildNode = deckClass[0].firstElementChild;
  	console.log(`deckChildNode ${deckChildNode}`);
- 	for (var i = 0; i < deckChildNode.length; i++){
- 		// console.log(`deckClass ${deckClass[0].childNodes[i]}`);
- 		[].forEach.call(cards, function(item) {
-            // deckChildNode.appendChild(item);
-            // console.log(`item ${item}`);
-        });
- 	}
+ 	// for (var i = 0; i < deckChildNode.length; i++){
+ 	// 	// console.log(`deckClass ${deckClass[0].childNodes[i]}`);
+ 	// 	[].forEach.call(cards, function(item) {
+  //           deckChildNode.appendChild(item);
+  //           // console.log(`item ${item}`);
+  //       });
+  //       cards[i].classList.remove("show", "open", "match", "disabled");
+ 	// }
  	// for (var i = 0; i < cards.length; i++){
   //       deck.innerHTML = "";
   //       [].forEach.call(cards, function(item) {
@@ -42,6 +52,7 @@ console.log(`deckClass ${deckClass}`);
   //       // cards[i].classList.remove("show", "open", "match", "disabled");
   //   }
  }
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
 	console.log('shuffle')
@@ -78,4 +89,10 @@ function cardOpen() {
 	console.log('classList: '+this.type);
 	this.classList.toggle("open");
 	this.classList.toggle("show");
+	incrementCounter();
+	console.log(`total moves ${numberOfMoves}`);
 };
+
+function incrementCounter(){
+	numberOfMoves++;
+}
