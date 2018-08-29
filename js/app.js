@@ -13,6 +13,9 @@ console.log(`deckClass ${deckClass}`);
 
 // variables for number of moves
 let numberOfMoves = 0;
+
+// variable to hold the number of open cards
+var openCards = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
