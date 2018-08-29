@@ -92,8 +92,14 @@ function cardOpen() {
 	console.log('classList: '+this.type);
 	this.classList.toggle("open");
 	this.classList.toggle("show");
+
+	// Increment the counter whenever a card is opened
 	incrementCounter();
 	console.log(`total moves ${numberOfMoves}`);
+
+	// add the opened card into the openedCards array
+	openCards.push(this);
+	console.log(`openCards ${openCards}`);
 };
 
 function incrementCounter(){
