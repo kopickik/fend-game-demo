@@ -40,7 +40,7 @@ var openCards = [];
         [].forEach.call(cards, function(item) {
             deck.appendChild(item);
         });
-        // cards[i].classList.remove("show", "open", "match", "disabled");
+        cards[i].classList.remove("show", "open", "match", "disabled");
     }
  }
 
