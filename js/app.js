@@ -28,32 +28,20 @@ var openCards = [];
 // function to load the Game onloading of the page
  function loadGame() {
  	console.log('startGame');
- 	console.log(cards);
  	cards = shuffle(cards);
-	console.log(cards);
 
  	// Reset the number of moves
  	numberOfMoves = 0;
 
- 	console.log(`deckClassLength ${deckClass.length}`);
- 	const deckChildNode = deckClass[0].firstElementChild;
- 	console.log(`deckChildNode ${deckChildNode}`);
- 	// for (var i = 0; i < deckChildNode.length; i++){
- 	// 	// console.log(`deckClass ${deckClass[0].childNodes[i]}`);
- 	// 	[].forEach.call(cards, function(item) {
-  //           deckChildNode.appendChild(item);
-  //           // console.log(`item ${item}`);
-  //       });
-  //       cards[i].classList.remove("show", "open", "match", "disabled");
- 	// }
- 	// for (var i = 0; i < cards.length; i++){
-  //       deck.innerHTML = "";
-  //       [].forEach.call(cards, function(item) {
-  //           deck.appendChild(item);
-  //           // console.log(`item ${item}`);
-  //       });
-  //       // cards[i].classList.remove("show", "open", "match", "disabled");
-  //   }
+ 	// const deckChildNode = deckClass[0].firstElementChild;
+
+ 	for (var i = 0; i < cards.length; i++){
+        deck.innerHTML = "";
+        [].forEach.call(cards, function(item) {
+            deck.appendChild(item);
+        });
+        // cards[i].classList.remove("show", "open", "match", "disabled");
+    }
  }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
