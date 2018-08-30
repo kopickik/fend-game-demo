@@ -1,75 +1,33 @@
-/*
- * Create a list that holds all of your cards
- */
-let cardElement = document.getElementsByClassName("card");
-let cards = [...cardElement];
-console.log(`cards ${cards}`);
+let cards = [].slice.call(document.getElementsByClassName("card"));
 
-// deck of all cards in game
-const deck = document.getElementById("card-deck");
-const deckClass = document.getElementsByClassName("deck");
-console.log(`deck ${deck}`);
-console.log(`deckClass ${deckClass}`);
+const deck = document.getElementsByClassName("deck")[0];
 
-// variables for number of moves
 let numberOfMoves = 0;
 
-// variable to hold the number of open cards
-var openCards = [];
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
- // onload function which is called everytime a page loads up
- document.body.onload = loadGame();
+let openCards = [];
 
-// function to load the Game onloading of the page
- function loadGame() {
- 	console.log('startGame');
- 	console.log(cards);
- 	cards = shuffle(cards);
-	console.log(cards);
+document.body.onload = loadGame();
 
- 	// Reset the number of moves
- 	numberOfMoves = 0;
+function loadGame() {
+    console.log('loadGame');
+    cards = shuffle(cards);
 
- 	console.log(`deckClassLength ${deckClass.length}`);
- 	const deckChildNode = deckClass[0].firstElementChild;
- 	console.log(`deckChildNode ${deckChildNode}`);
- 	// for (var i = 0; i < deckChildNode.length; i++){
- 	// 	// console.log(`deckClass ${deckClass[0].childNodes[i]}`);
- 	// 	[].forEach.call(cards, function(item) {
-  //           deckChildNode.appendChild(item);
-  //           // console.log(`item ${item}`);
-  //       });
-  //       cards[i].classList.remove("show", "open", "match", "disabled");
- 	// }
- 	// for (var i = 0; i < cards.length; i++){
-  //       deck.innerHTML = "";
-  //       [].forEach.call(cards, function(item) {
-  //           deck.appendChild(item);
-  //           // console.log(`item ${item}`);
-  //       });
-  //       // cards[i].classList.remove("show", "open", "match", "disabled");
-  //   }
- }
+    // Reset the number of moves
+    numberOfMoves = 0;
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-	console.log('shuffle')
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    deck.innerHTML = "";
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+    for (var i = 0; i < cards.length; i++) {
+        [].forEach.call(cards, (card) => {
+            deck.appendChild(card)
+        })
+        cards[i].classList.remove("show", "open", "match", "disabled");
     }
+}
 
-    return array;
+// Shuffle function from https://css-tricks.com/snippets/javascript/shuffle-array/ technique #2
+function shuffle(array) {
+    return array.sort(() => 0.5 - Math.random())
 }
 
 
@@ -83,30 +41,43 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-for(card of cards){
-	card.addEventListener("click", cardOpen);
-	card.addEventListener("click", toggleCard);
+for (card of cards) {
+    card.addEventListener("click", cardClicked);
 }
 
+function cardClicked (e) {
+    toggleCard(e.target)
+    addCardToOpenCards(e.target)
+
+}
+
+function addCardToOpenCards (card) {
+    if (openCards.indexOf(card.firstElementChild.classList.value) !== -1) return;
+    openCards.push(card.firstElementChild.classList.value);
+    console.log(openCards)
+}
+
+
 // function toggleCard which toggles the open and show class of the card
-function toggleCard() {
-	console.log('classList: '+this.type);
-	this.classList.toggle("open");
-	this.classList.toggle("show");
+function toggleCard(card) {
+    card.classList.toggle("open")
+    card.classList.toggle("show")
 };
 
 // function cardOpen which increments the counter and maintains the stack of opened card
 function cardOpen() {
-
-	// Increment the counter whenever a card is opened
-	incrementCounter();
-	console.log(`total moves ${numberOfMoves}`);
-
-	// add the opened card into the openedCards array
-	openCards.push(this);
-	console.log(`openCards ${openCards}`);
+    this.open = true;
+    // Increment the counter whenever a card is opened
+    incrementCounter();
+    // add the opened card into the openedCards array
+    openCards.push(this);
 };
 
-function incrementCounter(){
-	numberOfMoves++;
+function cardClose() {
+    this.open = false;
+    this.classList.remove("open").add("")
+}
+
+function incrementCounter() {
+    numberOfMoves++;
 }
