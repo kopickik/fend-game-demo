@@ -85,13 +85,18 @@ function shuffle(array) {
  */
 for(card of cards){
 	card.addEventListener("click", cardOpen);
+	card.addEventListener("click", toggleCard);
 }
 
-// function cardOpen which toggles the open and show class of the card
-function cardOpen() {
+// function toggleCard which toggles the open and show class of the card
+function toggleCard() {
 	console.log('classList: '+this.type);
 	this.classList.toggle("open");
 	this.classList.toggle("show");
+};
+
+// function cardOpen which increments the counter and maintains the stack of opened card
+function cardOpen() {
 
 	// Increment the counter whenever a card is opened
 	incrementCounter();
