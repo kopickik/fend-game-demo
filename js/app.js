@@ -13,6 +13,7 @@ const deckClass = document.getElementsByClassName("deck");
 
 // variables for number of moves
 let numberOfMoves = 0;
+let counterForMoves = document.querySelector(".moves");
 
 // variable to hold the number of open cards
 var openCards = [];
@@ -32,6 +33,7 @@ var openCards = [];
 
  	// Reset the number of moves
  	numberOfMoves = 0;
+	counterForMoves.innerHTML = numberOfMoves;
 
 	// Iterate through the cards array and append it to the deck
 	// And remove the attributes
@@ -94,4 +96,5 @@ function cardOpen() {
 
 function incrementCounter(){
 	numberOfMoves++;
+	counterForMoves.innerHTML = numberOfMoves;
 }
