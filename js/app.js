@@ -3,13 +3,13 @@
  */
 let cardElement = document.getElementsByClassName("card");
 let cards = [...cardElement];
-console.log(`cards ${cards}`);
+// console.log(`cards ${cards}`);
 
 // deck of all cards in game
 const deck = document.getElementById("card-deck");
 const deckClass = document.getElementsByClassName("deck");
-console.log(`deck ${deck}`);
-console.log(`deckClass ${deckClass}`);
+// console.log(`deck ${deck}`);
+// console.log(`deckClass ${deckClass}`);
 
 // variables for number of moves
 let numberOfMoves = 0;
@@ -33,14 +33,11 @@ var openCards = [];
  	// Reset the number of moves
  	numberOfMoves = 0;
 
- 	// const deckChildNode = deckClass[0].firstElementChild;
-
- 	for (var i = 0; i < cards.length; i++){
-        deck.innerHTML = "";
-        [].forEach.call(cards, function(item) {
-            deck.appendChild(item);
-        });
-        cards[i].classList.remove("show", "open", "match", "disabled");
+	// Iterate through the cards array and append it to the deck
+	// And remove the attributes
+	for (let card of cards){
+		deck.append(card);
+		card.classList.remove("show", "open", "match", "disabled");
     }
  }
 
