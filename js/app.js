@@ -126,16 +126,20 @@ function notMatched(){
     openCards[0].classList.add("unmatched");
     openCards[1].classList.add("unmatched");
     disableCard();
-    setTimeout(function(){
+    hideCards();
+}
+
+function hideCards(){
+	setTimeout(function(){
         openCards[0].classList.remove("show", "open", "no-event","unmatched");
         openCards[1].classList.remove("show", "open", "no-event","unmatched");
         enableCard();
         openCards = [];
-    },1100);
+    },500);
 }
 
 // @description disable cards temporarily
-function disableCard(cardElement){
+function disableCard(){
     Array.prototype.filter.call(allCards, function(cardElement){
         cardElement.classList.add("disabled");
     });
@@ -143,8 +147,8 @@ function disableCard(cardElement){
 
 // @description enable cards and disable matched cards
 function enableCard(){
-    Array.prototype.filter.call(allCards, function(card){
-        card.classList.remove('disabled');
+    Array.prototype.filter.call(allCards, function(cardElement){
+        cardElement.classList.remove('disabled');
         for(var i = 0; i < matchedCard.length; i++){
             matchedCard[i].classList.add("disabled");
         }
