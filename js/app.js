@@ -13,6 +13,10 @@ let counterForMoves = document.querySelector(".moves");
 
 // variable to hold the number of open cards
 var openCards = [];
+
+// variable which holds matchedCards
+let matchedCard = document.getElementsByClassName("match");
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -98,17 +102,17 @@ function incrementCounter(){
 function handleOpenCards(){
 	var numberOfCards = openCards.length;
 	    if(numberOfCards === 2){
-	        // moveCounter();
 	        if(openCards[0].type === openCards[1].type){
-	            matched();
+	            cardsMatched();
 	        } else {
-	            disableCard();
+	            notMatched();
 	        }
 	    }
 }
 
-// @description when cards match
-function matched(){
+// Function to add matched and disabled and removing the show,
+// open and no-event to the matched card, when the cards are matched.
+function cardsMatched(){
     openCards[0].classList.add("match", "disabled");
     openCards[1].classList.add("match", "disabled");
     openCards[0].classList.remove("show", "open", "no-event");
@@ -116,17 +120,30 @@ function matched(){
     openCards = [];
 }
 
+// Function to add unmatched and removing the show,
+// open, unmatched and no-event to the matched card, when the cards are not matched.
+function notMatched(){
+    openCards[0].classList.add("unmatched");
+    openCards[1].classList.add("unmatched");
+    disableCard();
+    setTimeout(function(){
+        openCards[0].classList.remove("show", "open", "no-event","unmatched");
+        openCards[1].classList.remove("show", "open", "no-event","unmatched");
+        enableCard();
+        openCards = [];
+    },1100);
+}
+
 // @description disable cards temporarily
 function disableCard(cardElement){
-	// cardElement.classList.add("disabled");
     Array.prototype.filter.call(allCards, function(cardElement){
         cardElement.classList.add("disabled");
     });
 }
 
 // @description enable cards and disable matched cards
-function enable(){
-    Array.prototype.filter.call(cards, function(card){
+function enableCard(){
+    Array.prototype.filter.call(allCards, function(card){
         card.classList.remove('disabled');
         for(var i = 0; i < matchedCard.length; i++){
             matchedCard[i].classList.add("disabled");
