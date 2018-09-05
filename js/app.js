@@ -129,6 +129,7 @@ function notMatched(){
     hideCards();
 }
 
+// Function to remove the cards attribute and empty the opened card list.
 function hideCards(){
 	setTimeout(function(){
         openCards[0].classList.remove("show", "open", "no-event","unmatched");
@@ -138,14 +139,14 @@ function hideCards(){
     },500);
 }
 
-// @description disable cards temporarily
+// Function to disable cards temporarily so that it can't be clicked.
 function disableCard(){
     Array.prototype.filter.call(allCards, function(cardElement){
         cardElement.classList.add("disabled");
     });
 }
 
-// @description enable cards and disable matched cards
+// Function to enable cards and disable matched cards.
 function enableCard(){
     Array.prototype.filter.call(allCards, function(cardElement){
         cardElement.classList.remove('disabled');
