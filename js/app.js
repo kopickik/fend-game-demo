@@ -2,14 +2,10 @@
  * Create a list that holds all of your cards
  */
 let cardElement = document.getElementsByClassName("card");
-let cards = [...cardElement];
-// console.log(`cards ${cards}`);
+let allCards = [...cardElement];
 
 // deck of all cards in game
-const deck = document.getElementById("card-deck");
-const deckClass = document.getElementsByClassName("deck");
-// console.log(`deck ${deck}`);
-// console.log(`deckClass ${deckClass}`);
+const deckOfCards = document.getElementById("card-deck");
 
 // variables for number of moves
 let numberOfMoves = 0;
@@ -29,7 +25,7 @@ var openCards = [];
 // function to load the Game onloading of the page
  function loadGame() {
  	console.log('startGame');
- 	cards = shuffle(cards);
+ 	allCards = shuffle(allCards);
 
  	// Reset the number of moves
  	numberOfMoves = 0;
@@ -37,8 +33,8 @@ var openCards = [];
 
 	// Iterate through the cards array and append it to the deck
 	// And remove the attributes
-	for (let card of cards){
-		deck.append(card);
+	for (let card of allCards){
+		deckOfCards.append(card);
 		card.classList.remove("show", "open", "match", "disabled");
     }
  }
@@ -59,7 +55,6 @@ function shuffle(array) {
     return array;
 }
 
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -70,14 +65,13 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-for(card of cards){
+for(card of allCards){
 	card.addEventListener("click", cardOpen);
 	card.addEventListener("click", toggleCard);
 }
 
 // function toggleCard which toggles the open and show class of the card
 function toggleCard() {
-	console.log('classList: '+this.type);
 	this.classList.toggle("open");
 	this.classList.toggle("show");
 };
@@ -87,14 +81,55 @@ function cardOpen() {
 
 	// Increment the counter whenever a card is opened
 	incrementCounter();
-	console.log(`total moves ${numberOfMoves}`);
 
 	// add the opened card into the openedCards array
 	openCards.push(this);
 	console.log(`openCards ${openCards}`);
+	disableCard(this);
+	handleOpenCards();
 };
 
 function incrementCounter(){
 	numberOfMoves++;
+	console.log(`total moves ${numberOfMoves}`);
 	counterForMoves.innerHTML = numberOfMoves;
+}
+
+function handleOpenCards(){
+	var numberOfCards = openCards.length;
+	    if(numberOfCards === 2){
+	        // moveCounter();
+	        if(openCards[0].type === openCards[1].type){
+	            matched();
+	        } else {
+	            disableCard();
+	        }
+	    }
+}
+
+// @description when cards match
+function matched(){
+    openCards[0].classList.add("match", "disabled");
+    openCards[1].classList.add("match", "disabled");
+    openCards[0].classList.remove("show", "open", "no-event");
+    openCards[1].classList.remove("show", "open", "no-event");
+    openCards = [];
+}
+
+// @description disable cards temporarily
+function disableCard(cardElement){
+	// cardElement.classList.add("disabled");
+    Array.prototype.filter.call(allCards, function(cardElement){
+        cardElement.classList.add("disabled");
+    });
+}
+
+// @description enable cards and disable matched cards
+function enable(){
+    Array.prototype.filter.call(cards, function(card){
+        card.classList.remove('disabled');
+        for(var i = 0; i < matchedCard.length; i++){
+            matchedCard[i].classList.add("disabled");
+        }
+    });
 }
