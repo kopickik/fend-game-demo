@@ -39,6 +39,7 @@ var interval;
  	numberOfMoves = 0;
 	counterForMoves.innerHTML = numberOfMoves;
 
+	openCards = [];
 	// Iterate through the cards array and append it to the deck
 	// And remove the attributes
 	for (let card of allCards){
@@ -173,17 +174,25 @@ function enableCard(){
 
 // Function to set the sec, min and hour time in the timer clock using setInterval
 function startTimer(){
+	console.log("startTimer")
     interval = setInterval(function(){
-        timerClock.innerHTML = hour + " : " + minute + " : " + second;
         second++;
         if(second == 60){
             minute++;
-            second=0;
+            second = 0;
         }
         if(minute == 60){
             hour++;
             minute = 0;
         }
+        timerClock.innerHTML = formatTime(hour) + ":" + formatTime(minute) + ":" + formatTime(second);
     },1000);
+}
+
+function formatTime(time) {
+    if (time < 10) {
+      time = '0' + time
+    }
+    return time;
 }
 
