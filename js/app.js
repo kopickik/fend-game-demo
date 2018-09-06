@@ -1,6 +1,7 @@
 (function() {
 let cards = [].slice.call(document.getElementsByClassName("card"));
 const deck = document.getElementsByClassName("deck")[0];
+const restarter = document.getElementsByClassName("fa-repeat")[0]
 let numberOfMoves = 0;
 let totalMovesDOM = document.getElementsByClassName("moves")[0]
 let totalMoves = Number(document.getElementsByClassName("moves")[0].textContent);
@@ -14,7 +15,8 @@ function loadGame() {
     deck.innerHTML = "";
     cards.map((card, i) => {
         deck.appendChild(card)
-        cards[i].classList.remove("show", "open", "match", "disabled");
+        cards[i].classList.remove("show", "open", "match", "disabled")
+        cards[i].removeAttribute("disabled")
     })
 }
 
@@ -62,10 +64,6 @@ function cardClicked (e) {
 function addCardToOpenCards (cardClass, card) {
     toggleCard(card)
     cardOpen(cardClass)
-}
-
-function matchedCard (card) {
-    card.classList.toggle("match")
 }
 
 // function toggleCard which toggles the open and show class of the card
@@ -123,5 +121,10 @@ const closeAllCards = () => {
 
 const resetNumberOfMoves = () => numberOfMoves = 0
 const resetOpenCards = () => openCards = []
-
+const restartGame = () => {
+    document.getElementsByClassName("moves")[0].textContent = 0
+    totalMoves = Number(document.getElementsByClassName("moves")[0].textContent);
+    loadGame()
+}
+restarter.addEventListener("click", () => restartGame())
 })()
