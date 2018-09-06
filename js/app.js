@@ -1,35 +1,27 @@
+(function() {
 let cards = [].slice.call(document.getElementsByClassName("card"));
-
 const deck = document.getElementsByClassName("deck")[0];
-
 let numberOfMoves = 0;
-
+let totalMovesDOM = document.getElementsByClassName("moves")[0]
+let totalMoves = Number(document.getElementsByClassName("moves")[0].textContent);
 let openCards = [];
 
 document.body.onload = loadGame();
 
 function loadGame() {
-    console.log('loadGame');
     cards = shuffle(cards);
-
-    // Reset the number of moves
     numberOfMoves = 0;
-
     deck.innerHTML = "";
-
-    for (var i = 0; i < cards.length; i++) {
-        [].forEach.call(cards, (card) => {
-            deck.appendChild(card)
-        })
+    cards.map((card, i) => {
+        deck.appendChild(card)
         cards[i].classList.remove("show", "open", "match", "disabled");
-    }
+    })
 }
 
 // Shuffle function from https://css-tricks.com/snippets/javascript/shuffle-array/ technique #2
 function shuffle(array) {
     return array.sort(() => 0.5 - Math.random())
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -46,38 +38,90 @@ for (card of cards) {
 }
 
 function cardClicked (e) {
-    toggleCard(e.target)
-    addCardToOpenCards(e.target)
-
+    let card
+    let cardClass
+    switch (e.target.nodeName) {
+        case 'LI':// li itself
+            card = e.target
+            cardClass = e.target.firstElementChild.classList.value
+            break;
+        case 'I':// icon itself
+            card = e.target.parentElement
+            cardClass = e.target.classList.value
+            break;
+    }
+    if (card.getAttribute("disabled") === "true") {
+        return e.preventDefault();
+    }
+    addCardToOpenCards(cardClass, card);
+    if (numberOfMoves === 2) {
+        compareCardsInOpenCards();
+    }
 }
 
-function addCardToOpenCards (card) {
-    if (openCards.indexOf(card.firstElementChild.classList.value) !== -1) return;
-    openCards.push(card.firstElementChild.classList.value);
-    console.log(openCards)
+function addCardToOpenCards (cardClass, card) {
+    toggleCard(card)
+    cardOpen(cardClass)
 }
 
+function matchedCard (card) {
+    card.classList.toggle("match")
+}
 
 // function toggleCard which toggles the open and show class of the card
 function toggleCard(card) {
     card.classList.toggle("open")
     card.classList.toggle("show")
-};
+    card.setAttribute("disabled", true)
+}
 
 // function cardOpen which increments the counter and maintains the stack of opened card
-function cardOpen() {
-    this.open = true;
-    // Increment the counter whenever a card is opened
-    incrementCounter();
-    // add the opened card into the openedCards array
-    openCards.push(this);
-};
-
-function cardClose() {
-    this.open = false;
-    this.classList.remove("open").add("")
+function cardOpen(cardClass) {
+    incrementCounter()
+    contained(cardClass) ? openCards.push(cardClass) : null
 }
 
 function incrementCounter() {
-    numberOfMoves++;
+    numberOfMoves++
+    totalMoves++
+    totalMovesDOM.innerHTML = totalMoves
 }
+
+function compareCardsInOpenCards () {
+    if (openCards.length === 1) {
+        console.log("matched!")
+        lockMatchedCards()
+    } else {
+        console.log("no match.")
+        closeAllCards()
+    }
+    resetNumberOfMoves()
+    resetOpenCards()
+}
+
+function lockMatchedCards() {
+    cards.map((item) => {
+        if (item.classList.contains("show")) {
+            item.classList.add("match")
+        }
+    })
+}
+
+// this will be true if it exists in openCards array
+const contained = (c) => openCards.indexOf(c) === -1
+
+const closeAllCards = () => {
+    setTimeout(() => {
+        cards.forEach((card) => {
+            if (card.classList.value.indexOf("match") === -1) {
+                card.classList = "card"
+                card.removeAttribute("disabled")
+            }
+        })
+    }, 400)
+}
+
+const resetNumberOfMoves = () => numberOfMoves = 0
+const resetOpenCards = () => openCards = []
+
+})()
