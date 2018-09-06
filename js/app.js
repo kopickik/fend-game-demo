@@ -17,6 +17,10 @@ var openCards = [];
 // variable which holds matchedCards
 let matchedCard = document.getElementsByClassName("match");
 
+// Variables for the timer
+var second = 0, minute = 0; hour = 0;
+var timerClock = document.querySelector(".timer");
+var interval;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -41,6 +45,14 @@ let matchedCard = document.getElementsByClassName("match");
 		deckOfCards.append(card);
 		card.classList.remove("show", "open", "match", "disabled");
     }
+
+    //reset timer
+    second = 0;
+    minute = 0;
+    hour = 0;
+    // var timer = document.querySelector(".timer");
+    timerClock.innerHTML = "00:00:00";
+    clearInterval(interval);
  }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -97,6 +109,9 @@ function incrementCounter(){
 	numberOfMoves++;
 	console.log(`total moves ${numberOfMoves}`);
 	counterForMoves.innerHTML = numberOfMoves;
+	if(numberOfMoves == 1){
+		startTimer();
+	}
 }
 
 function handleOpenCards(){
@@ -155,3 +170,20 @@ function enableCard(){
         }
     });
 }
+
+// Function to set the sec, min and hour time in the timer clock using setInterval
+function startTimer(){
+    interval = setInterval(function(){
+        timerClock.innerHTML = hour + " : " + minute + " : " + second;
+        second++;
+        if(second == 60){
+            minute++;
+            second=0;
+        }
+        if(minute == 60){
+            hour++;
+            minute = 0;
+        }
+    },1000);
+}
+
