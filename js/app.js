@@ -24,6 +24,10 @@ var interval;
 
 // Variables for star ratings
 const stars = document.querySelectorAll(".fa-star");
+
+// declare modal
+let popupCongratulation = document.getElementById("popup-congratulation")
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -107,7 +111,7 @@ function cardOpen() {
 	// add the opened card into the openedCards array
 	openCards.push(this);
 	console.log(`openCards ${openCards}`);
-	disableCard(this);
+	disableCard();
 	handleOpenCards();
 };
 
@@ -222,14 +226,19 @@ function formatTime(time) {
 
 // function congratulationsPopup which displays a congratulations popup
 function congratulationsPopup(){
-	finalTime = timerClock.innerHTML;
-	console.log(`finalTime ${finalTime}`);
-	//Displaying the total moves, star rating and total time taken
-    document.getElementById("total-moves").innerHTML = numberOfMoves;
+	if(openCards.length == 16) {
+		finalTime = timerClock.innerHTML;
+		console.log(`finalTime ${finalTime}`);
+		//Displaying the total moves, star rating and total time taken
+	    document.getElementById("total-moves").innerHTML = numberOfMoves;
 
-    // declare star rating variable
-    var starRating = document.querySelector(".stars").innerHTML;
-    document.getElementById("star-rating").innerHTML = starRating;
-    document.getElementById("total-time").innerHTML = finalTime;
+	    // declare star rating variable
+	    var starRating = document.querySelector(".stars").innerHTML;
+	    document.getElementById("star-rating").innerHTML = starRating;
+	    document.getElementById("total-time").innerHTML = finalTime;
+
+	    // show congratulations modal
+        popupCongratulation.classList.add("show");
+	}
 }
 
