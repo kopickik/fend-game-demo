@@ -35,7 +35,7 @@
      *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
      *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
      */
-    for (card of cards) {
+    for (let card of cards) {
         card.addEventListener("click", cardClicked);
     }
 
@@ -85,10 +85,8 @@
 
     function compareCardsInOpenCards() {
         if (openCards.length === 1) {
-            console.log("matched!")
             lockMatchedCards()
         } else {
-            console.log("no match.")
             closeAllCards()
         }
         resetNumberOfMoves()
