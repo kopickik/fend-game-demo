@@ -84,7 +84,6 @@ h1 {
 /*
  * Styles for the Score Panel
  */
-
 .score-panel {
     text-align: left;
     width: 345px;
@@ -111,4 +110,11 @@ h1 {
 .timer {
     display: inline-block;
     margin-left: 10px;
+}
+
+/**
+* Styles for the congratulations popup
+*/
+#star-rating li {
+    display: inline-block;
 }

@@ -202,6 +202,9 @@ function congratulationsPopup(){
 	console.log(`finalTime ${finalTime}`);
 	//Displaying the total moves, star rating and total time taken
     document.getElementById("total-moves").innerHTML = numberOfMoves;
+
+    // declare star rating variable
+    var starRating = document.querySelector(".stars").innerHTML;
     document.getElementById("star-rating").innerHTML = starRating;
     document.getElementById("total-time").innerHTML = finalTime;
 }
