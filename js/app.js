@@ -85,6 +85,7 @@ function shuffle(array) {
 for(card of allCards){
 	card.addEventListener("click", cardOpen);
 	card.addEventListener("click", toggleCard);
+	card.addEventListener("click", congratulationsPopup);
 }
 
 // function toggleCard which toggles the open and show class of the card
@@ -95,7 +96,6 @@ function toggleCard() {
 
 // function cardOpen which increments the counter and maintains the stack of opened card
 function cardOpen() {
-
 	// Increment the counter whenever a card is opened
 	incrementCounter();
 
@@ -194,5 +194,15 @@ function formatTime(time) {
       time = '0' + time
     }
     return time;
+}
+
+// function congratulationsPopup which displays a congratulations popup
+function congratulationsPopup(){
+	finalTime = timerClock.innerHTML;
+	console.log(`finalTime ${finalTime}`);
+	//Displaying the total moves, star rating and total time taken
+    document.getElementById("total-moves").innerHTML = numberOfMoves;
+    document.getElementById("star-rating").innerHTML = starRating;
+    document.getElementById("total-time").innerHTML = finalTime;
 }
 
