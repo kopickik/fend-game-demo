@@ -21,6 +21,9 @@ let matchedCard = document.getElementsByClassName("match");
 var second = 0, minute = 0; hour = 0;
 var timerClock = document.querySelector(".timer");
 var interval;
+
+// Variables for star ratings
+const stars = document.querySelectorAll(".fa-star");
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -99,6 +102,8 @@ function cardOpen() {
 	// Increment the counter whenever a card is opened
 	incrementCounter();
 
+	handleStarRating();
+
 	// add the opened card into the openedCards array
 	openCards.push(this);
 	console.log(`openCards ${openCards}`);
@@ -115,6 +120,25 @@ function incrementCounter(){
 	}
 }
 
+/**
+* Function to handle the star rating of the player.
+*/
+function handleStarRating(){
+	// setting rates based on moves
+    if (numberOfMoves > 30){
+        stars[1].style.visibility = "collapse";
+    } else if (numberOfMoves > 25){
+        stars[2].style.visibility = "collapse";
+    } else if (numberOfMoves > 20){
+        stars[3].style.visibility = "collapse";
+    } else if (numberOfMoves > 16){
+        stars[4].style.visibility = "collapse";
+    }
+}
+
+/**
+* Function to handle the opened cards to check if they match or not.
+*/
 function handleOpenCards(){
 	var numberOfCards = openCards.length;
 	    if(numberOfCards === 2){
