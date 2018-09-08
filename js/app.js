@@ -15,7 +15,7 @@ let counterForMoves = document.querySelector(".moves");
 var openCards = [];
 
 // variable which holds matchedCards
-let matchedCard = document.getElementsByClassName("match");
+let matchedCards = document.getElementsByClassName("match");
 
 // Variables for the timer
 var second = 0, minute = 0; hour = 0;
@@ -194,8 +194,8 @@ function disableCard(){
 function enableCard(){
     Array.prototype.filter.call(allCards, function(cardElement){
         cardElement.classList.remove('disabled');
-        for(var i = 0; i < matchedCard.length; i++){
-            matchedCard[i].classList.add("disabled");
+        for(var i = 0; i < matchedCards.length; i++){
+            matchedCards[i].classList.add("disabled");
         }
     });
 }
@@ -224,20 +224,29 @@ function formatTime(time) {
     return time;
 }
 
+// Function which clears the setInterval
+function stopTimer(){
+	clearInterval(interval);
+}
+
 // function congratulationsPopup which displays a congratulations popup
 function congratulationsPopup(){
-	if(openCards.length == 16) {
-		finalTime = timerClock.innerHTML;
-		console.log(`finalTime ${finalTime}`);
-		//Displaying the total moves, star rating and total time taken
+	if(matchedCards.length == 16) {
+		stopTimer();
+
+		//Displaying the total moves
 	    document.getElementById("total-moves").innerHTML = numberOfMoves;
 
 	    // declare star rating variable
 	    var starRating = document.querySelector(".stars").innerHTML;
+	    // Displaying star rating and total time taken
 	    document.getElementById("star-rating").innerHTML = starRating;
+
+		// Displaying total time taken
+	    finalTime = timerClock.innerHTML;
 	    document.getElementById("total-time").innerHTML = finalTime;
 
-	    // show congratulations modal
+	    // show congratulations popup
         popupCongratulation.classList.add("show");
 	}
 }
