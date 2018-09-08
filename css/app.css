@@ -115,6 +115,37 @@ h1 {
 /**
 * Styles for the congratulations popup
 */
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 500ms;
+    display: none; /* Hidden by default */
+    opacity: 0;
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+.show-overlay {
+    display: block !important;
+    opacity: 100 !important;
+}
+
+.popup-content {
+    margin: 70px auto;
+    padding: 20px;
+    background-image: url("../img/trophy.png");
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    border-radius: 5px;
+    width: 55%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
 #star-rating li {
     display: inline-block;
 }
