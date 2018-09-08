@@ -26,7 +26,7 @@ var interval;
 const stars = document.querySelectorAll(".fa-star");
 
 // declare modal
-let popupCongratulation = document.getElementById("popup-congratulation")
+let popupCongratulation = document.getElementById("popup-congratulation");
 
 /*
  * Display the cards on the page
@@ -247,7 +247,7 @@ function congratulationsPopup(){
 	    document.getElementById("total-time").innerHTML = finalTime;
 
 	    // show congratulations popup
-        popupCongratulation.classList.add("show");
+        popupCongratulation.classList.add("show-overlay");
 	}
 }
 
