@@ -34,9 +34,9 @@ h1 {
 /*
  * Styles for the deck of cards
  */
-
 .deck {
     margin: 10px auto;
+    max-width: 660px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 20px;
     border-radius: 10px;
@@ -176,37 +176,19 @@ h1 {
         width: 120px;
         margin: 10px;
     }
-
-    /*#popup-congratulation {
-        margin: 0 auto;
-     width: 100px;
-    }*/
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    .deck .card {
-        height: 160px;
-        width: 160px;
-        margin: 15px;
+    .deck {
+        width: 660px;
+        height: 680px;
     }
 
-    /*#popup-congratulation {
-       margin: 0 auto;
-     width: 100px;
-    }*/
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
     .deck .card {
-        height: 200px;
-        width: 200px;
-        margin: 15px;
+        height: 125px;
+        width: 125px;
     }
-
-    /*#popup-congratulation {
-        margin: 0 auto;
-     width: 100px;
-    }*/
 }
+
+
