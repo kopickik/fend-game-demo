@@ -28,6 +28,9 @@ const stars = document.querySelectorAll(".fa-star");
 // declare modal
 let popupCongratulation = document.getElementById("popup-congratulation");
 
+// close icon in modal
+let closeButton = document.querySelector(".close");
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -54,11 +57,16 @@ let popupCongratulation = document.getElementById("popup-congratulation");
 		card.classList.remove("show", "open", "match", "disabled");
     }
 
+ 	// reset rating
+    for (var i= 0; i < stars.length; i++){
+        stars[i].style.visibility = "visible";
+    }
+
     //reset timer
     second = 0;
     minute = 0;
     hour = 0;
-    // var timer = document.querySelector(".timer");
+
     timerClock.innerHTML = "00:00:00";
     clearInterval(interval);
  }
@@ -103,18 +111,24 @@ function toggleCard() {
 
 // function cardOpen which increments the counter and maintains the stack of opened card
 function cardOpen() {
-	// Increment the counter whenever a card is opened
 	incrementCounter();
 
 	handleStarRating();
 
-	// add the opened card into the openedCards array
-	openCards.push(this);
-	console.log(`openCards ${openCards}`);
+	addOpenCard(this);
+
 	disableCard();
+
 	handleOpenCards();
 };
 
+// Add the opnedCard to the array
+function addOpenCard(opnedCard){
+	// add the opened card into the openedCards array
+	openCards.push(opnedCard);
+}
+
+// Increment the counter whenever a card is opened
 function incrementCounter(){
 	numberOfMoves++;
 	console.log(`total moves ${numberOfMoves}`);
@@ -124,11 +138,9 @@ function incrementCounter(){
 	}
 }
 
-/**
-* Function to handle the star rating of the player.
-*/
+// Function to handle the star rating of the player.
 function handleStarRating(){
-	// setting rates based on moves
+	// setting the rates based on moves
     if (numberOfMoves > 30){
         stars[1].style.visibility = "collapse";
     } else if (numberOfMoves > 25){
@@ -140,10 +152,9 @@ function handleStarRating(){
     }
 }
 
-/**
-* Function to handle the opened cards to check if they match or not.
-*/
+// Function to handle the opened cards to check if they match or not.
 function handleOpenCards(){
+	// checking the number of open cards for type
 	var numberOfCards = openCards.length;
 	    if(numberOfCards === 2){
 	        if(openCards[0].type === openCards[1].type){
@@ -151,7 +162,8 @@ function handleOpenCards(){
 	        } else {
 	            notMatched();
 	        }
-	    }
+	}
+
 }
 
 // Function to add matched and disabled and removing the show,
@@ -248,6 +260,13 @@ function congratulationsPopup(){
 
 	    // show congratulations popup
         popupCongratulation.classList.add("show-overlay");
+        closeCongratulationsPopup();
 	}
+}
+
+function closeCongratulationsPopup(){
+    closeButton.addEventListener("click", function(e){
+        popupCongratulation.classList.remove("show-overlay");
+    });
 }
 
