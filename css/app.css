@@ -100,6 +100,12 @@ h1 {
     display: inline-block;
 }
 
+.star-style {
+    color: yellow;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: orange;
+}
+
 .score-panel .restart {
     float: right;
     cursor: pointer;
@@ -146,9 +152,8 @@ h1 {
     display: inline-block;
 }
 
-.modal-content {
-    /*margin: 0 auto;*/
-    /*width: 100%;*/
+.moves {
+    margin: 0 2px 0 2px;
 }
 
 /****** Media queries ******/
