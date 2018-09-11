@@ -64,7 +64,6 @@
     function addCardToOpenCards(cardClass, card) {
         toggleCard(card)
         cardOpen(cardClass)
-        console.log(openCards)
     }
 
     function toggleCard(card) {
@@ -100,6 +99,14 @@
                 item.classList.add("match")
             }
         })
+        showVictoryModal()
+    }
+
+    function showVictoryModal() {
+        let modal = document.getElementsByClassName('modal')[0]
+        modal.classList.add('show');
+        modal.classList.add('fade');
+        modal.classList.add('modal-open');
     }
 
     // this will be true if it exists in openCards array
