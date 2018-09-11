@@ -64,6 +64,7 @@
     function addCardToOpenCards(cardClass, card) {
         toggleCard(card)
         cardOpen(cardClass)
+        console.log(openCards)
     }
 
     function toggleCard(card) {
