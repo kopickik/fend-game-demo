@@ -1,3 +1,4 @@
+/* global Timer */
 (function () {
     let cards = [].slice.call(document.getElementsByClassName("card"));
     const deck = document.getElementsByClassName("deck")[0];
@@ -6,17 +7,23 @@
     let totalMovesDOM = document.getElementsByClassName("moves")[0]
     let totalMoves = Number(document.getElementsByClassName("moves")[0].textContent);
     let openCards = [];
-
+    let matches = 0;
+    let timerInstance = new Timer();
+    let timerDOM = document.getElementById("timer")
     document.body.onload = loadGame();
 
     function loadGame() {
         cards = shuffle(cards);
         numberOfMoves = 0;
         deck.innerHTML = "";
+        timerInstance.start();
         cards.map((card, i) => {
             deck.appendChild(card)
             cards[i].classList.remove("show", "open", "match", "disabled")
             cards[i].removeAttribute("disabled")
+        })
+        timerInstance.addEventListener('secondsUpdated', (e) => {
+            timerDOM.innerHTML = timerInstance.getTimeValues().toString()
         })
     }
 
@@ -52,7 +59,7 @@
                 cardClass = e.target.classList.value
                 break;
         }
-        if (card.getAttribute("disabled") === "true") {// getAttribute returns a string, not bool :(
+        if (card.getAttribute("disabled") === "true") { // getAttribute returns a string, not bool :(
             return e.preventDefault();
         }
         addCardToOpenCards(cardClass, card);
@@ -97,9 +104,12 @@
         cards.map((item) => {
             if (item.classList.contains("show")) {
                 item.classList.add("match")
+                matches++
             }
         })
-        showVictoryModal()
+        if (matches === 8) {
+            showVictoryModal()
+        }
     }
 
     function showVictoryModal() {
@@ -131,4 +141,5 @@
         loadGame()
     }
     restarter.addEventListener("click", () => restartGame())
+
 })()

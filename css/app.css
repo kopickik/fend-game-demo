@@ -87,7 +87,9 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     width: 345px;
     margin-bottom: 10px;
 }
@@ -107,6 +109,10 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+.fade {
+    transition: opacity 0.15s linear;
 }
 
 .modal-open .modal {
