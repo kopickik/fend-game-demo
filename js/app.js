@@ -16,7 +16,6 @@
         cards = shuffle(cards);
         numberOfMoves = 0;
         deck.innerHTML = "";
-        timerInstance.start();
         cards.map((card, i) => {
             deck.appendChild(card)
             cards[i].classList.remove("show", "open", "match", "disabled")
@@ -47,6 +46,7 @@
     }
 
     function cardClicked(e) {
+        timerInstance.start();
         let card
         let cardClass
         switch (e.target.nodeName) {
@@ -59,7 +59,7 @@
                 cardClass = e.target.classList.value
                 break;
         }
-        if (card.getAttribute("disabled") === "true") { // getAttribute returns a string, not bool :(
+        if (card.getAttribute("disabled") === "true") { // getAttribute returns a string, not bool
             return e.preventDefault();
         }
         addCardToOpenCards(cardClass, card);
@@ -101,10 +101,10 @@
     }
 
     function lockMatchedCards() {
+        matches++
         cards.map((item) => {
             if (item.classList.contains("show")) {
                 item.classList.add("match")
-                matches++
             }
         })
         if (matches === 8) {
@@ -117,6 +117,8 @@
         modal.classList.add('show');
         modal.classList.add('fade');
         modal.classList.add('modal-open');
+        timerInstance.reset();
+        timerInstance.stop();
     }
 
     // this will be true if it exists in openCards array
