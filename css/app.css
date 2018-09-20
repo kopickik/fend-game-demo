@@ -90,8 +90,21 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 345px;
-    margin-bottom: 10px;
+    width: 30em;
+}
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+
+.close:not(:disabled):not(.disabled) {
+    cursor: pointer;
 }
 
 .score-panel .stars {
@@ -224,8 +237,7 @@ h1 {
 }
 
 .modal-header .close {
-    padding: 1rem;
-    margin: -1rem -1rem -1rem auto;
+    line-height: 1rem;
 }
 
 .modal-title {
@@ -290,4 +302,44 @@ h1 {
     .modal-lg {
         max-width: 800px;
     }
+}
+
+.btn {
+    display: inline-block;
+    zoom: 1;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn {
+    font-family: inherit;
+    font-size: 100%;
+    padding: .5em 1em;
+    color: #444;
+    color: rgba(0,0,0,.8);
+    border: 1px solid #999;
+    border: transparent;
+    background-color: #E6E6E6;
+    text-decoration: none;
+    border-radius: 2px;
+}
+
+.btn-secondary {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    background: cornflowerblue;
+}
+
+.btn:hover {
+    filter: alpha(opacity=90);
+    background-image: -webkit-linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+    background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
 }

@@ -1,7 +1,7 @@
 {
   "name": "fend-project-memory-game",
   "version": "1.0.0",
-  "description": "## Table of Contents",
+  "description": "A sample javascript game",
   "main": "index.js",
   "dependencies": {
     "easytimer.js": "^2.2.3"
