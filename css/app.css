@@ -20,13 +20,35 @@ body {
     background: #ffffff url('../img/geometry2.png');
     /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
+    text-align: center;
 }
 
 .container {
+    max-width: 64em;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.flex-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+}
+
+.row {
+    width: auto;
+    border: 1px rgba(100, 149, 237, 0.3)
+}
+
+.row li {
+    list-style: none;
+    display: inline;
+}
+
+.flex-item {
+    padding: 5px;
+    line-height: 1.8em;
+    text-align: center;
 }
 
 h1 {
@@ -49,7 +71,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 3em;
+    margin: 0 auto 3em;
 }
 
 .deck .card {
@@ -86,19 +108,29 @@ h1 {
  * Styles for the Score Panel
  */
 
+.level {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+}
+
+.level li {
+
+}
+
 .score-panel {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 345px;
-    margin-bottom: 10px;
+    width: 38em;
+    margin: 0 auto 1em;
 }
 
-.score-panel .stars {
-    margin: 0;
+.score-panel .stars li {
     padding: 0;
+    margin: 0 5px;
+    list-style: none;
     display: inline-block;
-    margin: 0 5px 0 0;
 }
 
 .star-style {
@@ -107,9 +139,8 @@ h1 {
     -webkit-text-stroke-color: orange;
 }
 
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
+.level li:hover {
+    transform: scale(1.5em);
 }
 
 .score-panel .restart {
@@ -135,7 +166,6 @@ h1 {
     bottom: 0;
     left: 0;
     z-index: 1050;
-    display: none;
     overflow: hidden;
     outline: 0;
 }

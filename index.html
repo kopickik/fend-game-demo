@@ -64,7 +64,7 @@
         </ul>
     </div>
     <!-- Overlay Modal -->
-    <div class="modal" tabindex="-1" role="dialog">
+    <div id="popup-congratulation" class="modal" tabindex="-1" role="dialog" style="display: none;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -76,18 +76,22 @@
                 <div class="modal-body">
                     <div class="final-score">
                         <p>Total moves :
-                            <span id=total-moves></span> moves
+                            <span id="total-moves"></span> moves
                         </p>
                         <p>Total time taken:
-                            <span id=total-time></span>
+                            <span id="total-time"></span>
                         </p>
-                        <p>Rating :
-                            <span id=star-rating></span>
-                        </p>
+                        <div><span>Rating:</span>
+                            <div class="flex-container">
+                                <div class="row">
+                                    <div id="star-rating"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="play-again" onclick=loadGame()>Play Again</button>
+                    <button type="button" class="btn btn-secondary" id="play-again" onclick="loadGame()">Play Again</button>
                 </div>
             </div>
         </div>
