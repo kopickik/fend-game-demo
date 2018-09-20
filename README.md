@@ -1,4 +1,6 @@
 # Memory Game Project
+Run the demo application hosted in heroku.
+**[Play Game](https://udacity-memory-game.herokuapp.com/)**
 
 ## Table of Contents
 
