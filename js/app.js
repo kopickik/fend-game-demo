@@ -36,7 +36,7 @@ function loadGame() {
 }
 
 // Shuffle function from https://css-tricks.com/snippets/javascript/shuffle-array/ technique #2
-function shuffle(array) {
+function shuffle (array) {
     return array.sort(() => 0.5 - Math.random())
 }
 
